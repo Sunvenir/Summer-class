@@ -58,8 +58,8 @@ public class DaoImgl implements Dao {
             MongoDatabase db = mongoClient.getDatabase("Summer-class");
             System.out.println("connected successfully");
             MongoCollection<Document> collection = db.getCollection("User");
-            Bson fliter = Filters.and(Filters.eq("name",name),Filters.eq("password",password));
-            Document document = collection.find(fliter).first();
+            Bson filter = Filters.and(Filters.eq("name",name),Filters.eq("password",password));
+            Document document = collection.find(filter).first();
             User user = new User((Integer) document.get("user_id"),(String) document.get("name"),(String) document.get("password"));
             return user;
         }catch (Exception e){
