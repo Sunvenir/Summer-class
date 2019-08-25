@@ -10,6 +10,7 @@ public class Reply {
     private Date time;
     private String replyContent;
 
+    public Reply() {};
     public Reply(User replyUser, Date time, String replyContent) {
         this.replyContent = replyContent;
         this.time = time;

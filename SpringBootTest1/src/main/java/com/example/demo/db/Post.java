@@ -10,12 +10,15 @@ public class Post {
     private Date time;
     private String content;
     private Reply[] replies;
+    private int like;
 
-    public Post(User postUser, Date time, String content, Reply[] replies) {
+    public Post() {};
+    public Post(User postUser, Date time, String content, Reply[] replies, int like) {
         this.postUser = postUser;
         this.time = time;
         this.content = content;
         this.replies = replies;
+        this.like = like;
     }
 
     public Date getTime() {
@@ -34,6 +37,10 @@ public class Post {
         return replies;
     }
 
+    public int getLike() {
+        return like;
+    }
+
     public void setContent(String content) {
         this.content = content;
     }
@@ -48,6 +55,17 @@ public class Post {
 
     public void setReplies(Reply[] replies) {
         this.replies = replies;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public void iLikeIt() {
+        /*
+        这是点赞
+         */
+        like ++;
     }
 
     @Override
