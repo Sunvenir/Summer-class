@@ -1,4 +1,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://114.115.237.78:27017/User
+      uri: mongodb://114.115.237.78:27017
+      database: Summer-class
