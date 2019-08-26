@@ -1,5 +1,9 @@
-spring:
-  data:
-    mongodb:
-      uri: mongodb://114.115.237.78:27017
-      database: Summer-class
+thymeleaf:
+  cache: false
+  prefix: classpath:/templates/
+  suffix: .html
+  encoding: UTF-8
+  content-type: text/html
+  servlet:
+    content-type: text/html
+  mode: HTML5

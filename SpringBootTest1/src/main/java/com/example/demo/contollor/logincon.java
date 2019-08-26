@@ -1,28 +1,38 @@
 package com.example.demo.contollor;
 
-import com.example.demo.Mongo_jdbc.Dao;
-import com.example.demo.Mongo_jdbc.DaoImgl;
-import com.example.demo.db.User;
+import com.example.demo.Repository.Dao;
+import com.example.demo.Repository.DaoImgl;
+import com.example.demo.domain.User;
+import com.example.demo.result.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+
 @Controller
 public class logincon {
-    @PostMapping(value = "/user/login")
-    public String login(@RequestParam("username") String username,
-                      @RequestParam("password") String password,
-                      Map<String,Object> map, HttpSession session){
+    @RequestMapping(value = "/login")
+    public Result login( @RequestBody User requestUser){
         Dao dao = DaoImgl.getInstance();
-        User user = dao.login(username,password);
+        User user = dao.login(requestUser.getName(),requestUser.getPassword());
         if(user != null){
-            return "login_test";
+            return new Result(400);
         }
         else {
-            return "login";
+            return new Result(200);
         }
+    }
+
+    @RequestMapping(value = "/user/register")
+    public Result register(@RequestBody User requestUser){
+        Dao dao = DaoImgl.getInstance();
+        dao.register(requestUser);
+        return new Result(400);
+
     }
 }
