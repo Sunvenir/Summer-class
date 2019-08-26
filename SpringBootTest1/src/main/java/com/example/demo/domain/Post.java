@@ -1,4 +1,4 @@
-package com.example.demo.db;
+package com.example.demo.domain;
 
 import org.springframework.data.annotation.Id;
 
@@ -70,7 +70,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return postUser.getUsername() + " / " +
+        return postUser.getName() + " / " +
                 time.toString() + " / " +
                 content;
     }

@@ -1,4 +1,4 @@
-package com.example.demo.db;
+package com.example.demo.domain;
 
 import org.springframework.data.annotation.Id;
 
@@ -43,7 +43,7 @@ public class Reply {
 
     @Override
     public String toString() {
-        return replyUser.getUsername() + " / " +
+        return replyUser.getName() + " / " +
                 time.toString() + " / " +
                 replyContent;
     }
