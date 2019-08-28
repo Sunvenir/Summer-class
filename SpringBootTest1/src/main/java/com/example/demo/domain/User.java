@@ -2,7 +2,7 @@ package com.example.demo.domain;
 
 public class User {
     private static int id = 0;//唯一标识
-    private  String name;
+    private  String username;
     private String password;
     private String avatar;
     private int identity;
@@ -10,9 +10,9 @@ public class User {
 
     public User() {//无参默认构造器
     }
-    public User(String name, String password) {
+    public User(String username, String password) {
         this.id = ++id;
-        this.name = name;
+        this.username = username;
         this.avatar = "default avatar";
         this.identity = 1;
         this.password = password;
@@ -25,10 +25,10 @@ public class User {
         this.id = id;
     }
     public String getName() {
-        return name;
+        return username;
     }
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
     public int getIdentity() {
         return identity;
@@ -46,7 +46,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" +  id+
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", age=" + identity +", password="+
                 '}';
     }

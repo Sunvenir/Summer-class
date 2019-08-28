@@ -11,23 +11,25 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 
-@Controller
+@RestController
 public class logincon {
-    @CrossOrigin
-    @RequestMapping(value = "/login")
-    public Result login( @RequestBody User requestUser){
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/login")
+    //@ResponseBody
+    public Result login( @RequestBody User user){
         Dao dao = DaoImgl.getInstance();
-        User user = dao.login(requestUser.getName(),requestUser.getPassword());
-        if(user != null){
-            return new Result(400);
+        User user1 = dao.login(user.getName(),user.getPassword());
+        if(user1 != null){
+            return new Result(200);
         }
         else {
-            return new Result(200);
+            return new Result(400);
         }
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/user/register")
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/register")
+    //@ResponseBody
     public Result register(@RequestBody User requestUser){
         Dao dao = DaoImgl.getInstance();
         dao.register(requestUser);
