@@ -84,6 +84,7 @@
       },
       methods: {
           submitForm(formName) {
+            console.log(this.ruleForm.UserName)
           this.$refs[formName].validate((valid) => {
             if (valid) {
               this.$axios

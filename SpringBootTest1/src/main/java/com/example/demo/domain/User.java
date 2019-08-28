@@ -2,7 +2,7 @@ package com.example.demo.domain;
 
 public class User {
     private static int id = 0;//唯一标识
-    private  String username;
+    private String username;
     private String password;
     private String avatar;
     private int identity;

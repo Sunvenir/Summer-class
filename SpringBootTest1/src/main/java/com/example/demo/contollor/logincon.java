@@ -16,10 +16,11 @@ public class logincon {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/login")
     //@ResponseBody
-    public Result login( @RequestBody User user){
+    public Result login( @RequestBody Map map){
+        User user = new User((String) map.get("username"),(String)map.get("password"));
+        System.out.println("登录 ： "+user.getName() + " 密码　："+user.getPassword());
         Dao dao = DaoImgl.getInstance();
         User user1 = dao.login(user.getName(),user.getPassword());
-        System.out.println(user.getName()+user.getPassword());
         if(user1 != null){
             return new Result(200);
         }
@@ -31,11 +32,11 @@ public class logincon {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/register")
     //@ResponseBody
-    public Result register(@RequestBody User requestUser){
+    public Result register(@RequestBody  Map map){
+        User user = new User((String) map.get("username"),(String)map.get("password"));
         Dao dao = DaoImgl.getInstance();
-        System.out.println(requestUser.getName()+"  "+requestUser.getPassword());
-        dao.register(requestUser);
-        return new Result(200);
+        dao.register(user);
+        return new Result(400);
 
     }
 }
