@@ -19,6 +19,7 @@ public class logincon {
     public Result login( @RequestBody User user){
         Dao dao = DaoImgl.getInstance();
         User user1 = dao.login(user.getName(),user.getPassword());
+        System.out.println(user.getName()+user.getPassword());
         if(user1 != null){
             return new Result(200);
         }
@@ -32,8 +33,9 @@ public class logincon {
     //@ResponseBody
     public Result register(@RequestBody User requestUser){
         Dao dao = DaoImgl.getInstance();
+        System.out.println(requestUser.getName()+"  "+requestUser.getPassword());
         dao.register(requestUser);
-        return new Result(400);
+        return new Result(200);
 
     }
 }

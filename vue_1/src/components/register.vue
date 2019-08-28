@@ -6,20 +6,20 @@
           <h style="font-family: 黑体;font-size:30px">注册</h>
         </div>
         <div style="margin: 20px">
-      <el-form :model="user" status-icon :rules="rules" ref="user" label-width="100px" class="demo-ruleForm">
-          <el-form-item label-width=70px label="用户名" prop="username">
-            <el-input v-model="user.userName"></el-input>
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label-width=70px label="用户名" prop="UserName">
+            <el-input v-model="ruleForm.UserName"></el-input>
           </el-form-item>
-          <el-form-item label-width=70px label="密码" prop="password">
-            <el-input type="Password" v-model="user.password" autocomplete="off"></el-input>
+          <el-form-item label-width=70px label="密码" prop="Pass">
+            <el-input type="Password" v-model="ruleForm.Pass" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label-width=70px label="确认密码" prop="CheckPass">
-            <el-input type="Password" v-model="user.CheckPass" autocomplete="off"></el-input>
+            <el-input type="Password" v-model="ruleForm.CheckPass" autocomplete="off"></el-input>
           </el-form-item>
 
           <el-form-item label-width=0px>
-            <el-button type="primary" @click="register('user')">提交</el-button>
-            <el-button @click="resetForm('user')">重置</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
         </div>
@@ -27,20 +27,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data () {
-    return {
-      user: {
-        username: '',
-        psaaword: ''
-      },
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
-</script>
 
 <style>
 #div1{
@@ -61,7 +47,6 @@ export default {
 </style>
 <script>
     export default {
-      name: 'register',
       data() {
         var CheckUserName = (rule, value, callback) => {
           if (!value) {
@@ -75,8 +60,8 @@ export default {
           if (value === '') {
             callback(new Error('请输入密码'));
           } else {
-            if (this.user.CheckPass !== '') {
-              this.$refs.user.validateField('CheckPass');
+            if (this.ruleForm.CheckPass !== '') {
+              this.$refs.ruleForm.validateField('CheckPass');
             }
             callback();
           }
@@ -84,66 +69,65 @@ export default {
         var validatePass2 = (rule, value, callback) => {
           if (value === '') {
             callback(new Error('请再次输入密码'));
-          } else if (value !== this.user.password) {
+          } else if (value !== this.ruleForm.Pass) {
             callback(new Error('两次输入密码不一致!'));
           } else {
             callback();
           }
         };
         return {
-          user: {
-            password: '',
+          ruleForm: {
+            Pass: '',
             CheckPass: '',
-            username: ''
+            UserName: ''
           },
           rules: {
-            password: [
+            Pass: [
               { validator: validatePass, trigger: 'blur' }
             ],
             CheckPass: [
               { validator: validatePass2, trigger: 'blur' }
             ],
-            username: [
+            UserName: [
               { validator: CheckUserName, trigger: 'blur' }
             ]
           }
         };
       },
       methods: {
-        register(user) {
-          this.$refs[user].validate((valid) => {
-            if (valid) {
-              this.$axios
-         .post('/register',{
-             username: this.user.username,
-             password: this.user.password,
-             CheckPass: this.user.repassword
-         })
-         .then(successResponse=>{
-             if(successResponse.data.code===200){
-                 alert("注册成功");
-                 this.$store.commit('changeuser',this.user.username);
-                 this.$router.replace({path: '/'})
-             }
-             else if(successResponse.data.code===300){
-                 alert("用户已存在");
-             }
-             else{
-                 alert("请输入前后一致的密码");
-             }
-         })
-         .catch(failResponse=>{
-             alert("发生未知错误");
-         })
-            } else {
-              console.log('error submit!!');
-              return false;
-            }
-          });
-        },
-        resetForm(user) {
-          this.$refs[user].resetFields();
-        }
+        submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.$axios
+       .post('/register',{
+           username: this.ruleForm.UserName,
+           password: this.ruleForm.Pass,
+       })
+       .then(successResponse=>{
+           if(successResponse.data.code===200){
+               alert("注册成功");
+               this.$store.commit('changeuser',this.ruleForm.UserName);
+               this.$router.replace({path: '/'})
+           }
+           else if(successResponse.data.code===300){
+               alert("用户已存在");
+           }
+           else{
+               alert("请输入前后一致的密码");
+           }
+       })
+       .catch(failResponse=>{
+           alert("发生未知错误");
+       })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(user) {
+        this.$refs[user].resetFields();
+      }
       }
     }
   </script>

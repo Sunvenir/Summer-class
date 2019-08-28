@@ -39,7 +39,7 @@ public class DaoImgl implements Dao {
             MongoDatabase db = mongoClient.getDatabase("Summer-class");
             System.out.println("connected successfully");
             MongoCollection<Document> collection = db.getCollection("User");
-            Document document = new Document("name",user.getName()).
+            Document document = new Document("username",user.getName()).
                     append("password",user.getPassword()).
                     append("user_id",user.getId());
             List<Document> documents = new ArrayList<Document>();
