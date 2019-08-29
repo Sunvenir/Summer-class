@@ -93,6 +93,7 @@
              password: this.ruleForm.Pass,
          })
          .then(successResponse=>{
+           console.log(successResponse)
              if(successResponse.data.code===200){
                  alert("登录成功");
                  this.$store.commit('changeuser',this.ruleForm.UserName);

@@ -40,8 +40,7 @@ public class DaoImgl implements Dao {
             System.out.println("connected successfully");
             MongoCollection<Document> collection = db.getCollection("User");
             Document document = new Document("username",user.getName()).
-                    append("password",user.getPassword()).
-                    append("user_id",user.getId());
+                    append("password",user.getPassword());
             List<Document> documents = new ArrayList<Document>();
             documents.add(document);
             collection.insertMany(documents);
@@ -66,6 +65,9 @@ public class DaoImgl implements Dao {
             return null;
         }
     }
+
+    //用户是否存在
+
 
 }
 
