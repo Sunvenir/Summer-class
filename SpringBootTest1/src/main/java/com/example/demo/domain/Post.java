@@ -1,77 +1,82 @@
 package com.example.demo.domain;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
+import java.util.ArrayList;
+@Document(value = "Blog")
 public class Post {
-    @Id
-    private User postUser;
-    private Date time;
-    private String content;
-    private Reply[] replies;
-    private int like;
+    protected User post_owner;
+    protected String title;
+    protected String date;
+    protected int likes;
+    protected String detail;
+    protected String type;
+    protected ArrayList<Reply> reply;
+    public Post(){}
+    Post(User user,String title,String date,String details){
+        this.post_owner = user;
+        this.date = date;
+        this.detail = details;
+        this.likes = 0;
+        this.reply = new ArrayList<Reply>();
+        this.title = title;
 
-    public Post() {};
-    public Post(User postUser, Date time, String content, Reply[] replies, int like) {
-        this.postUser = postUser;
-        this.time = time;
-        this.content = content;
-        this.replies = replies;
-        this.like = like;
     }
 
-    public Date getTime() {
-        return time;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getContent() {
-        return content;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public User getPostUser() {
-        return postUser;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public Reply[] getReplies() {
-        return replies;
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
-    public int getLike() {
-        return like;
+    public void setPost_owner(User post_owner) {
+        this.post_owner = post_owner;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setReply(ArrayList<Reply> reply) {
+        this.reply = reply;
     }
 
-    public void setPostUser(User postUser) {
-        this.postUser = postUser;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public String getDate() {
+        return date;
     }
 
-    public void setReplies(Reply[] replies) {
-        this.replies = replies;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setLike(int like) {
-        this.like = like;
+    public User getPost_owner() {
+        return post_owner;
     }
 
-    public void iLikeIt() {
-        /*
-        这是点赞
-         */
-        like ++;
+    public ArrayList<Reply> getReply() {
+        return reply;
     }
 
-    @Override
-    public String toString() {
-        return postUser.getName() + " / " +
-                time.toString() + " / " +
-                content;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getType() {
+        return type;
     }
 }

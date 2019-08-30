@@ -1,50 +1,17 @@
 package com.example.demo.domain;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
-public class Reply {
-    @Id
-    private User replyUser;
-    private Date time;
-    private String replyContent;
-
-    public Reply() {};
-    public Reply(User replyUser, Date time, String replyContent) {
-        this.replyContent = replyContent;
-        this.time = time;
-        this.replyUser = replyUser;
+@Document(value = "Reply")
+public class Reply extends Post {
+    public  Reply(User user, String date, String details){
+        this.post_owner = user;
+        this.date = date;
+        this.detail = details;
+        this.reply = null;
+        this.title = null;
+        likes = 0;
     }
 
-    public Date getTime() {
-        return time;
-    }
 
-    public String getReplyContent() {
-        return replyContent;
-    }
-
-    public User getReplyUser() {
-        return replyUser;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public void setReplyContent(String replyContent) {
-        this.replyContent = replyContent;
-    }
-
-    public void setReplyUser(User replyUser) {
-        this.replyUser = replyUser;
-    }
-
-    @Override
-    public String toString() {
-        return replyUser.getName() + " / " +
-                time.toString() + " / " +
-                replyContent;
-    }
 }

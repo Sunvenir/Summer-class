@@ -46,7 +46,7 @@ public class UserDaoImgl implements UserDao{
         Query query = new Query(Criteria.where("username").is(user.getName()));
         Update update = new Update();
         update.set("realname",user.getRealname());
-        update.set("age",user.getAge());
+        update.set("email",user.getEmail());
         update.set("gender",user.getGender());
         update.set("birthday",user.getBirthday());
         update.set("location",user.getLocation());

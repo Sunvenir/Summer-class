@@ -25,7 +25,7 @@ public class updateusercon {
         User user = new User();
         user.setName((String)map.get("username"));
         user.setRealname((String)map.get("realname"));
-        user.setAge( Integer.valueOf((String) map.get("age")));
+        user.setEmail( (String)map.get("realname"));
         user.setBirthday(StrToDate((String) map.get("birthday")) );
         user.setGender(Integer.valueOf((String) map.get("gender")));
         user.setLocation((String)map.get("location"));

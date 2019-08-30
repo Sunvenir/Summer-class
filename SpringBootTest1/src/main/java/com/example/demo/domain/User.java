@@ -13,7 +13,7 @@ public class User {
     private String password;
     private String avatar;
     private int identity;
-    private int age;
+    private String email;
     private int gender;
     private Date birthday;
     private String location;
@@ -34,8 +34,8 @@ public class User {
         this.realname = realname;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setBirthday(Date birthday) {
@@ -50,8 +50,8 @@ public class User {
         this.location = location;
     }
 
-    public int getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
     public int getGender() {

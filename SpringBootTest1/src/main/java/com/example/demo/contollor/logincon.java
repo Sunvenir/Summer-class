@@ -29,7 +29,7 @@ public class logincon {
 //        User user1 = dao.login(user.getName(),user.getPassword());
         User user1 = userDao.checklogin((String) map.get("username"),(String)map.get("password"));
         if(user1 != null){
-            return new Result(user1,200);
+            return new Result(200);
         }
         else {
             return new Result(400);
