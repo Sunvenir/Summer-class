@@ -12,6 +12,8 @@ public class Post {
     protected String detail;
     protected String type;
     protected ArrayList<Reply> reply;
+    protected ArrayList<UploadFile> files;
+    protected ArrayList<String> urls;
     public Post(){}
     Post(User user,String title,String date,String details){
         this.post_owner = user;
@@ -21,6 +23,22 @@ public class Post {
         this.reply = new ArrayList<Reply>();
         this.title = title;
 
+    }
+
+    public ArrayList<String> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(ArrayList<String> urls) {
+        this.urls = urls;
+    }
+
+    public ArrayList<UploadFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(ArrayList<UploadFile> files) {
+        this.files = files;
     }
 
     public void setType(String type) {

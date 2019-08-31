@@ -24,10 +24,16 @@ public class User {
     }
     public User(String username, String password) {
         this.username = username;
-        this.avatar = "default avatar";
-        this.identity = 1;
         this.password = password;
         //this.identity = identity;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public void setRealname(String realname) {

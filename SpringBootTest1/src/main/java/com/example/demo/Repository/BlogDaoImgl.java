@@ -3,6 +3,7 @@ package com.example.demo.Repository;
 import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
 import com.example.demo.result.Result;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -36,6 +37,8 @@ public class BlogDaoImgl implements BlogDao {
     public List<Post> show_blogbyname(String username, int pagenum, int pagesize) {
         Query query = new Query(Criteria.where("post_owner.username").is(username)).
                 skip((pagenum - 1) * pagesize).limit(pagesize);
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC,"date"));
+        query.with(sort);
         List<Post> list = mongoTemplate.find(query,Post.class);
         if(list.size() < pagesize){
             for(int i = list.size();i < pagesize;i++){
@@ -56,6 +59,8 @@ public class BlogDaoImgl implements BlogDao {
     public List<Post> show_blogbytype(String type, int pagenum, int pagesize) {
         Query query = new Query(Criteria.where("type").is(type)).
                 skip((pagenum - 1) * pagesize).limit(pagesize);
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC,"date"));
+        query.with(sort);
         List<Post> list = mongoTemplate.find(query,Post.class);
         if(list.size() < pagesize){
             for(int i = list.size();i < pagesize;i++){
