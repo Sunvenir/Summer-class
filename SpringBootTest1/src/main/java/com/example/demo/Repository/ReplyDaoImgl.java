@@ -22,4 +22,11 @@ public class ReplyDaoImgl implements ReplyDao {
         List<Reply> replies = mongoTemplate.find(query,Reply.class);
         return replies;
     }
+
+    @Override
+    public void post_reply(Reply reply) {
+        mongoTemplate.save(reply);
+    }
+
+
 }

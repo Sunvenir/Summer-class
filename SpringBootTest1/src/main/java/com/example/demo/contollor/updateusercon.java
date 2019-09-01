@@ -24,10 +24,10 @@ public class updateusercon {
     public Result update(@RequestBody Map map){
         User user = new User();
         user.setName((String)map.get("username"));
-        user.setRealname((String)map.get("realname"));
-        user.setEmail( (String)map.get("realname"));
+        user.setRealname((String)map.get("name"));
+        user.setEmail( (String)map.get("email"));
         user.setBirthday(StrToDate((String) map.get("birthday")) );
-        user.setGender(Integer.valueOf((String) map.get("gender")));
+        user.setGender((String) map.get("gender"));
         user.setLocation((String)map.get("location"));
         userDao.update(user);
         return new Result(200);

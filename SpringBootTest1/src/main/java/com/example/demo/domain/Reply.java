@@ -8,8 +8,30 @@ public class Reply  {
     private String blogname;
     private String username;
     private String content;
-    private String replyto;
+    private String replyname;
     private String date;
+    private String avatar;
+    private int like;
+
+    public Reply(){
+        like = 0;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getBlogname() {
         return blogname;
@@ -35,12 +57,12 @@ public class Reply  {
         this.content = content;
     }
 
-    public String getReplyto() {
-        return replyto;
+    public String getReplyname() {
+        return replyname;
     }
 
-    public void setReplyto(String replyto) {
-        this.replyto = replyto;
+    public void setReplyname(String replyto) {
+        this.replyname = replyto;
     }
 
     public String getDate() {

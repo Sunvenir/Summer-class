@@ -14,13 +14,40 @@ public class User {
     private String avatar;
     private int identity;
     private String email;
-    private int gender;
+    private String gender;
     private Date birthday;
     private String location;
     private String realname;
+    private boolean banned;
+    private String status;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
 
     public User() {//无参默认构造器
+        this.banned = false;
+        this.status = "未被封禁";
     }
     public User(String username, String password) {
         this.username = username;
@@ -48,7 +75,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -60,7 +87,7 @@ public class User {
         return email;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 

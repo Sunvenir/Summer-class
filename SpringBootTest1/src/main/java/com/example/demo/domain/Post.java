@@ -8,21 +8,29 @@ public class Post {
     protected User post_owner;
     protected String title;
     protected String date;
-    protected int likes;
+    protected int like;
     protected String detail;
     protected String type;
     protected ArrayList<Reply> reply;
     protected ArrayList<UploadFile> files;
     protected ArrayList<String> urls;
-    public Post(){}
+    public Post(){like = 0;}
     Post(User user,String title,String date,String details){
         this.post_owner = user;
         this.date = date;
         this.detail = details;
-        this.likes = 0;
+        this.like = 0;
         this.reply = new ArrayList<Reply>();
         this.title = title;
 
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public ArrayList<String> getUrls() {
@@ -53,9 +61,6 @@ public class Post {
         this.detail = detail;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
 
     public void setPost_owner(User post_owner) {
         this.post_owner = post_owner;
@@ -65,9 +70,6 @@ public class Post {
         this.reply = reply;
     }
 
-    public int getLikes() {
-        return likes;
-    }
 
     public String getDate() {
         return date;

@@ -51,7 +51,7 @@ public class UploadFileController {
                 update.set("ContentType",file.getContentType());
                 update.set("Size",file.getSize());
                 mongoTemplate.updateFirst(query,update,UploadFile.class);
-                url = "http://localhost:8443/api/image/"+ uploadFile1.getId();
+                url = "http://114.115.237.78:8666/api/image/"+ uploadFile1.getId();
             }
             else {
                 uploadFile.setName(fileName);
@@ -60,8 +60,9 @@ public class UploadFileController {
                 uploadFile.setContent(new Binary(file.getBytes()));
                 uploadFile.setContentType(file.getContentType());
                 uploadFile.setSize(file.getSize());
+                uploadFile.setId(fileName + uploadFile.getCreatedTime());
                 UploadFile savedFile = mongoTemplate.save(uploadFile);
-                url = "http://localhost:8443/api/image/"+ savedFile.getId();//访问地址
+                url = "http://114.115.237.78:8666/api/image/"+ savedFile.getId();//访问地址
             }
             Query query1 = new Query(Criteria.where("username").is(username));
             Update update = new Update();
